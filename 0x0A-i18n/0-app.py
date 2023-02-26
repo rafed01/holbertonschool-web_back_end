@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
+"""basic Flask app
 """
-Flask app
-"""
+
 from flask import Flask, render_template
 
 
-app = Flask(__name__)
-app.url_map.strict_slashes = False
+app = Flask("my_beautiful_app")
 
 
-@app.route('/', methods=['GET'])
-def hello():
-    """ GET /
-    Return:
-      - Render template
+@app.route("/", strict_slashes=False)
+def root() -> str:
+    """root endpoint
     """
     return render_template('0-index.html')
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port="5000", debug=True)
